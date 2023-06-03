@@ -133,11 +133,15 @@ for i in range(0,15):
         print("创建失败，跳过！")
         continue
 
-    while True:
-        try:
-            breakserver(isid1)
-            break
-        except:
-            print("诶呀删不掉，等20s再试一次！")
+
+    try:
+        breakserver(isid1)
+    except:
+        while True:
+            print("还是删不掉，等20s后再试一次！")
             time.sleep(20)
-            continue
+            try:
+                breakserver(isid1)
+                break
+            except:
+                continue
